@@ -1,49 +1,38 @@
 <?php
 
-// $secret = 'your-secret-key';
-// $signature = 'sha1=' . hash_hmac('sha1', file_get_contents('php://input'), $secret);
-// if ($_SERVER['HTTP_X_HUB_SIGNATURE'] !== $signature) {
-//     http_response_code(403);
-//     die('Unauthorized');
-// }
-
-// $output = shell_exec('cd /public_html/goapi.qordinate.com/tes_serv && git pull origin main 2>&1');
-// echo "<pre>$output</pre>";
-
 // echo shell_exec('whoami');
 
-// print_r(ini_get('disable_functions'));
+// echo shell_exec('which git');
 
+// $arr1 = null;
 
-// // $dir = '/public_html/goapi.qordinate.com/tes_serv';
-// $dir = '/www/wwwroot/merantiapi.qordinate.com/tes_serv';
-// $command = "cd $dir && git pull origin main 2>&1";
-// $output = shell_exec($command);
+// Secret Token dari GitHub (Opsional)
+$secret = 'IkanProject@17';
 
-// if (!$output) {
-//     echo "Error: shell_exec returned no output. Possible issues:";
-//     echo "<ul>";
-//     echo "<li>shell_exec may be disabled on your server.</li>";
-//     echo "<li>Path to Git might be incorrect or Git is not installed.</li>";
-//     echo "<li>Directory permissions might be misconfigured.</li>";
-//     echo "</ul>";
-// } else {
-//     echo "<pre>$output</pre>";
-// }
+// Ambil payload dari GitHub
+$payload = file_get_contents('php://input');
+$signature = $_SERVER['HTTP_X_HUB_SIGNATURE'] ?? '';
 
-// echo shell_exec('whoami');
+// Validasi Signature
+if ($secret && $signature) {
+    $hash = 'sha1=' . hash_hmac('sha1', $payload, $secret);
+    if (!hash_equals($hash, $signature)) {
+        http_response_code(403);
+        die('Invalid signature');
+    }
+}
 
-
-
-// $secret = 'mauikanBakarGa1';
-// $signature = 'sha1=' . hash_hmac('sha1', file_get_contents('php://input'), $secret);
-// if ($_SERVER['HTTP_X_HUB_SIGNATURE'] !== $signature) {
-//     http_response_code(403);
-//     die('Unauthorized');
-// }
-
-$output = shell_exec('cd /www/wwwroot/merantiapi.qordinate.com/tes_serv && git pull origin main 2>&1');
+// Jalankan perintah Git
+// shell_exec('cd /www/wwwroot/merantiapi.qordinate.com/api_meranti_expose && git pull origin main');
+// shell_exec('cd /www/wwwroot/merantiapi.qordinate.com/tes_serv && git fetch origin main && git reset --hard origin/main');
+// $output = shell_exec('git config --global --add safe.directory /www/wwwroot/merantiapi.qordinate.com/tes_serv && cd /www/wwwroot/merantiapi.qordinate.com/tes_serv && git pull origin main 2>&1');
+$output = shell_exec('cd /public_html/goapi.qordinate.com/tes_serv_shared && git pull origin main 2>&1');
 echo "<pre>$output</pre>";
 
 
+http_response_code(200);
+
+// $arr1[] = array(
+//     "message_gan" => "seuccess push server"
+// );
 
