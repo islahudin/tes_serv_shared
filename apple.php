@@ -1,6 +1,6 @@
 <?php
 // Log aktivitas
-file_put_contents('webhook.log', date('Y-m-d H:i:s') . " - Webhook triggered\n", FILE_APPEND);
+// file_put_contents('webhook.log', date('Y-m-d H:i:s') . " - Webhook triggered\n", FILE_APPEND);
 
 // Detail FTP
 $ftp_host = '217.21.72.73';
