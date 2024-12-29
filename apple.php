@@ -3,7 +3,7 @@
 // file_put_contents('webhook.log', date('Y-m-d H:i:s') . " - Webhook triggered\n", FILE_APPEND);
 
 // Detail FTP
-$ftp_host = '217.21.72.73';
+$ftp_host = 'ftp.qordinate.com';
 $ftp_user = 'n1577716';
 $ftp_pass = 'MenaraQ#20231';
 $ftp_path = '/public_html/goapi.qordinate.com/tes_serv_shared'; // Path folder proyek di server
